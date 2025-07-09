@@ -5,7 +5,7 @@ import InternalLinks from '../components/InternalLinks';
 
 export default function 수원웨딩박람회({ sheetData }) {
   // Ensure sheetData is always an array
-  const safeSheetData = Array.isArray(sheetData) ? sheetData : [];) {
+  const safeSheetData = Array.isArray(sheetData) ? sheetData : [];
   return (
     <>
       <Head>
