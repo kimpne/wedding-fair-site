@@ -1,4 +1,3 @@
-
 import Head from 'next/head';
 import HeaderNotice from '../components/HeaderNotice';
 import RegionTabs from '../components/RegionTabs';
@@ -26,7 +25,7 @@ export default function 광주웨딩박람회({ sheetData }) {
       <main>
         <div className="container" style={{ padding: '30px' }}>
           <h1 style={{ textAlign: 'center', marginBottom: '30px' }}>2025 광주 웨딩박람회</h1>
-          
+
           <ul style={{ listStyle: 'none', padding: 0 }}>
             {safeSheetData
               .filter((row) => row[1] && row[1].includes('광주'))
@@ -63,17 +62,33 @@ export default function 광주웨딩박람회({ sheetData }) {
 }
 
 export async function getServerSideProps() {
-  const { getSheetData } = require('../lib/sheet');
+  const { google } = require('googleapis');
+  const path = require('path');
 
   try {
-    const sheetData = await getSheetData();
+    const auth = new google.auth.GoogleAuth({
+      keyFile: path.join(process.cwd(), 'credentials.json'),
+      scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly'],
+    });
+
+    const sheets = google.sheets({ version: 'v4', auth });
+    const spreadsheetId = '1ndcPLgJV-NeW3zWB4NCZzJM3E7EKAK01cdI1pSycnfI';
+    const range = '시트1!A2:D';
+
+    const response = await sheets.spreadsheets.values.get({
+      spreadsheetId,
+      range,
+    });
+
+    const sheetData = response.data.values || [];
+
     return {
       props: {
         sheetData: Array.isArray(sheetData) ? sheetData : [],
       },
     };
   } catch (error) {
-    console.error('Error fetching sheet data:', error);
+    console.error('Error in getServerSideProps:', error);
     return {
       props: {
         sheetData: [],
