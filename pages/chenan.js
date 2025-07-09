@@ -71,7 +71,7 @@ export default function chenan({ sheetData }) {
 }
 
 export async function getServerSideProps() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/sheet`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/api/sheet`);
   const sheetData = await res.json();
 
   return { props: { sheetData } };
