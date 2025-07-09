@@ -110,6 +110,7 @@ header p {
   margin: 0;
   min-width: max-content;
   list-style: none;
+  justify-content: center;
 }
 
 .tabmenu ul li {
@@ -262,53 +263,7 @@ header p {
   }
 }
 
-/* 지역 탭 메뉴 */
-.tabmenu {
-  background-color: #f0f0f0;
-  padding: 10px 0;
-  border-bottom: 1px solid #ddd;
-  overflow-x: auto;
-  white-space: nowrap;
-}
 
-.tabmenu ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  gap: 10px;
-  padding: 0 20px;
-}
-
-.tabmenu li {
-  flex-shrink: 0;
-}
-
-.tabmenu a {
-  display: block;
-  padding: 10px 15px;
-  text-decoration: none;
-  color: #333;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  background-color: white;
-  transition: all 0.3s ease;
-  font-size: 14px;
-  min-width: 70px;
-  text-align: center;
-}
-
-.tabmenu a:hover {
-  background-color: #E91E63;
-  color: white;
-  border-color: #E91E63;
-}
-
-.tabmenu .active a {
-  background-color: #E91E63;
-  color: white;
-  border-color: #E91E63;
-}
 
 /* 모바일 최적화 */
 @media (max-width: 768px) {
@@ -320,6 +275,7 @@ header p {
   .tabmenu ul {
     padding: 0 10px;
     gap: 0;
+    justify-content: center;
   }
 
   .tabmenu ul li a {
@@ -336,9 +292,10 @@ header p {
   .tabmenu ul {
     gap: 6px;
     padding: 0 12px;
+    justify-content: center;
   }
 
-  .tabmenu a {
+  .tabmenu ul li a {
     padding: 6px 10px;
     font-size: 12px;
     min-width: 50px;
