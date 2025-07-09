@@ -68,8 +68,8 @@ export default function Home() {
           align-items: center;
           justify-content: center;
           padding: 20px;
-          background: #fff;
-          border: 2px solid #e0e0e0;
+          background: #fafafa;
+          border: 2px solid #ddd;
           border-radius: 12px;
           text-decoration: none;
           color: #E91E63;
@@ -85,6 +85,7 @@ export default function Home() {
           transform: translateY(-4px);
           box-shadow: 0 8px 25px rgba(233, 30, 99, 0.2);
           border-color: #E91E63;
+          background: #f0f0f0;
           text-decoration: none;
         }
 
