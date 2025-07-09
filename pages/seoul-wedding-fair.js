@@ -60,6 +60,38 @@ export default function 서울웨딩박람회({ sheetData }) {
             <p style={{ color: 'red', fontWeight: 'bold' }}>{row[3]}</p>
             <p style={{ color: '#666' }}>{row[4]}</p>
           </div>
+        </a>
+      </li>
+    ))}
+        </ul>
+      </div>
+    </main>
+
+    <InternalLinks />
+  </>
+  );
+}
+
+export async function getServerSideProps() {
+  const { getSheetData } = require('../lib/sheet');
+  
+  try {
+    const sheetData = await getSheetData();
+    return {
+      props: {
+        sheetData: sheetData || [],
+      },
+    };
+  } catch (error) {
+    console.error('Error fetching sheet data:', error);
+    return {
+      props: {
+        sheetData: [],
+      },
+    };
+  }
+}w[4]}</p>
+          </div>
             </a>
           </li>
         ))}
