@@ -66,7 +66,7 @@ export default function 전라웨딩박람회({ sheetData }) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const fs = require('fs');
   const path = require('path');
   
@@ -78,6 +78,7 @@ export async function getServerSideProps() {
         props: {
           sheetData: [],
         },
+        revalidate: 60,
       };
     }
     
@@ -88,13 +89,15 @@ export async function getServerSideProps() {
       props: {
         sheetData: Array.isArray(sheetData) ? sheetData : [],
       },
+      revalidate: 60,
     };
   } catch (error) {
-    console.error('Error in getServerSideProps:', error);
+    console.error('Error in getStaticProps:', error);
     return {
       props: {
         sheetData: [],
       },
+      revalidate: 60,
     };
   }
 }
