@@ -1,7 +1,7 @@
-// pages/api/sheet-data.js
-import { google } from 'googleapis';
 
 export default async function handler(req, res) {
+  const { google } = require('googleapis');
+
   try {
     const credentials = JSON.parse(process.env.GOOGLE_CREDENTIALS || '{}');
     
@@ -10,18 +10,19 @@ export default async function handler(req, res) {
       scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly'],
     });
 
-  const sheets = google.sheets({ version: 'v4', auth });
+    const sheets = google.sheets({ version: 'v4', auth });
+    const spreadsheetId = '1ndcPLgJV-NeW3zWB4NCZzJM3E7EKAK01cdI1pSycnfI';
+    const range = '시트1!A2:D';
 
-  const spreadsheetId = '1ndcPLgJV-NeW3zWB4NCZzJM3E7EKAK01cdI1pSycnfI';
-  const range = '시트1!A2:D';
-
-  const response = await sheets.spreadsheets.values.get({
+    const response = await sheets.spreadsheets.values.get({
       spreadsheetId,
       range,
     });
-    res.status(200).json(response.data.values);
+
+    const sheetData = response.data.values || [];
+    res.status(200).json(sheetData);
   } catch (error) {
-    console.error(error);
+    console.error('Error fetching sheet data:', error);
     res.status(500).json({ error: 'Failed to fetch data' });
   }
 }
