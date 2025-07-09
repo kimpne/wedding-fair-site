@@ -53,10 +53,10 @@ export default function 광주웨딩박람회({ sheetData }) {
 export async function getServerSideProps() {
   const fs = require('fs');
   const path = require('path');
-  
+
   try {
     const jsonPath = path.join(process.cwd(), 'public', 'wedding-fair-data.json');
-    
+
     if (!fs.existsSync(jsonPath)) {
       return {
         props: {
@@ -64,7 +64,7 @@ export async function getServerSideProps() {
         },
       };
     }
-    
+
     const jsonData = fs.readFileSync(jsonPath, 'utf-8');
     const sheetData = JSON.parse(jsonData);
 
