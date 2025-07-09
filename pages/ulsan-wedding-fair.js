@@ -68,26 +68,22 @@ export default function 울산웨딩박람회({ sheetData }) {
 }
 
 export async function getServerSideProps() {
-  const { google } = require('googleapis');
+  const fs = require('fs');
+  const path = require('path');
   
   try {
-    const credentials = JSON.parse(process.env.GOOGLE_CREDENTIALS || '{}');
+    const jsonPath = path.join(process.cwd(), 'public', 'wedding-fair-data.json');
     
-    const auth = new google.auth.GoogleAuth({
-      credentials: credentials,
-      scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly'],
-    });
-
-    const sheets = google.sheets({ version: 'v4', auth });
-    const spreadsheetId = '1ndcPLgJV-NeW3zWB4NCZzJM3E7EKAK01cdI1pSycnfI';
-    const range = '시트1!A2:F';
-
-    const response = await sheets.spreadsheets.values.get({
-      spreadsheetId,
-      range,
-    });
-
-    const sheetData = response.data.values || [];
+    if (!fs.existsSync(jsonPath)) {
+      return {
+        props: {
+          sheetData: [],
+        },
+      };
+    }
+    
+    const jsonData = fs.readFileSync(jsonPath, 'utf-8');
+    const sheetData = JSON.parse(jsonData);
 
     return {
       props: {
