@@ -25,7 +25,7 @@ export default function 수원웨딩박람회({ sheetData }) {
 
       <main>
         <div className="container" style={{ padding: '30px' }}>
-          <h1 style={{ textAlign: 'center', marginBottom: '30px' }}>2025 수원웨딩박람회</h1>
+          <h1 style={{ textAlign: 'center', marginBottom: '30px' }}>2025 수원 웨딩박람회</h1>
           
           <ul style={{ listStyle: 'none', padding: 0 }}>
             {safeSheetData
