@@ -82,21 +82,4 @@ export async function getServerSideProps() {
       },
     };
   }
-} = require('../lib/sheet');
-  
-  try {
-    const sheetData = await getSheetData();
-    return {
-      props: {
-        sheetData: sheetData || [],
-      },
-    };
-  } catch (error) {
-    console.error('Error fetching sheet data:', error);
-    return {
-      props: {
-        sheetData: [],
-      },
-    };
-  }
 }
