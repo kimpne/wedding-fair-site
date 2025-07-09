@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
+import HeaderNotice from "../components/HeaderNotice";
 
 const regions = [
   { name: "서울웨딩박람회", path: "seoul-wedding-fair" },
@@ -27,48 +28,79 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <header
-        style={{
-          padding: "20px",
-          background: "#f8f8f8",
-          borderBottom: "1px solid #ddd",
-        }}
-      >
-        <h1 style={{ fontSize: "24px" }}>2025 전국 웨딩 박람회 일정</h1>
-        <p style={{ fontSize: "14px", color: "#555" }}>
-          매주 업데이트되는 전국 웨딩/허니문 박람회 일정
-        </p>
-        <p style={{ fontSize: "14px", color: "#555" }}>
-          모든 박람회는 중복 신청이 가능합니다
-        </p>
-      </header>
+      <HeaderNotice />
 
       <main>
-        <div className="container" style={{ padding: "30px" }}>
-          <h2 style={{ marginBottom: "20px" }}>원하는 지역을 선택하세요</h2>
-          <ul style={{ listStyle: "none", padding: 0 }}>
+        <div className="container" style={{ padding: "40px 20px" }}>
+          <h2 style={{ 
+            textAlign: "center", 
+            marginBottom: "30px", 
+            fontSize: "24px",
+            color: "#333"
+          }}>
+            원하는 지역을 선택하세요
+          </h2>
+          <div className="region-grid">
             {regions.map((region) => (
-              <li key={region.path} style={{ marginBottom: "15px" }}>
-                <Link
-                  href={`/${region.path}`}
-                  style={{
-                    fontSize: "18px",
-                    color: "#E91E63",
-                    fontWeight: "500",
-                    textDecoration: "none",
-                    display: "inline-block",
-                    padding: "10px 15px",
-                    border: "1px solid #ccc",
-                    borderRadius: "8px",
-                  }}
-                >
-                  {region.name}
-                </Link>
-              </li>
+              <Link
+                key={region.path}
+                href={`/${region.path}`}
+                className="region-card"
+              >
+                {region.name}
+              </Link>
             ))}
-          </ul>
+          </div>
         </div>
       </main>
+
+      <style jsx>{`
+        .region-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          gap: 20px;
+          max-width: 900px;
+          margin: 0 auto;
+        }
+
+        .region-card {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 20px;
+          background: #fff;
+          border: 2px solid #e0e0e0;
+          border-radius: 12px;
+          text-decoration: none;
+          color: #E91E63;
+          font-weight: 600;
+          font-size: 16px;
+          text-align: center;
+          min-height: 80px;
+          transition: all 0.3s ease;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        }
+
+        .region-card:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 8px 25px rgba(233, 30, 99, 0.2);
+          border-color: #E91E63;
+          text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+          .region-grid {
+            grid-template-columns: 1fr;
+            gap: 15px;
+          }
+          
+          .region-card {
+            min-height: 60px;
+            font-size: 15px;
+            padding: 15px;
+          }
+        }
+      `}</style>
     </>
   );
 }
