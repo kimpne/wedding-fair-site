@@ -2,6 +2,7 @@ import Head from 'next/head';
 import HeaderNotice from '../components/HeaderNotice';
 import RegionTabs from '../components/RegionTabs';
 import InternalLinks from '../components/InternalLinks';
+import Link from 'next/link';
 
 export default function chenan({ sheetData }) {
   return (
@@ -46,7 +47,11 @@ export default function chenan({ sheetData }) {
 
       <main>
         <div className="container" style={{ padding: '30px' }}>
-          <h1 style={{ textAlign: 'center', marginBottom: '30px' }}>2025 천안 웨딩박람회</h1>
+          <Link href="/" passHref>
+            <h1 style={{ textAlign: 'center', marginBottom: '30px', cursor: 'pointer' }}>
+              2025 천안 웨딩박람회
+            </h1>
+          </Link>
 
           {(() => {
             const currentRegionData = sheetData.filter((row) => row[0] === '천안');
@@ -67,16 +72,18 @@ export default function chenan({ sheetData }) {
                         <img src={row[1] || '/placeholder.jpg'} alt={row[2] || '웨딩박람회'} />
                         <div>
                           <h3>{row[2] || '웨딩박람회'}</h3>
-                          <p className="date">{row[3] || ''}</p>
-                          <p className="description">{row[4] || ''}</p>
+                          <p style={{ color: 'red', fontWeight: 'bold' }}>{row[3] || ''}</p>
+                          <p style={{ color: '#666' }}>{row[4] || ''}</p>
                         </div>
                       </a>
                     </li>
                   ))}
                   
                   {currentRegionData.length > 0 && otherRegionData.length > 0 && (
-                    <li className="section-divider">
-                      <h2>다른 지역 웨딩박람회</h2>
+                    <li style={{ margin: '40px 0 20px 0', textAlign: 'center' }}>
+                      <h2 style={{ color: '#333', borderBottom: '2px solid #ddd', paddingBottom: '10px' }}>
+                        다른 지역 웨딩박람회
+                      </h2>
                     </li>
                   )}
                   
@@ -86,9 +93,9 @@ export default function chenan({ sheetData }) {
                         <img src={row[1] || '/placeholder.jpg'} alt={row[2] || '웨딩박람회'} />
                         <div>
                           <h3>{row[2] || '웨딩박람회'}</h3>
-                          <p className="date">{row[3] || ''}</p>
-                          <p className="description">{row[4] || ''}</p>
-                          <p className="location">📍 {row[0]}</p>
+                          <p style={{ color: 'red', fontWeight: 'bold' }}>{row[3] || ''}</p>
+                          <p style={{ color: '#666' }}>{row[4] || ''}</p>
+                          <p style={{ color: '#999', fontSize: '14px' }}>📍 {row[0]}</p>
                         </div>
                       </a>
                     </li>

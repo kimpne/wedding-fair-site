@@ -4,24 +4,24 @@ import RegionTabs from '../components/RegionTabs';
 import InternalLinks from '../components/InternalLinks';
 import Link from 'next/link';
 
-export default function yigsan({ sheetData }) {
+export default function cheng({ sheetData }) {
   return (
     <>
       <Head>
-        <title>익산웨딩박람회 일정 안내 | 2025년 최신 업데이트</title>
-        <meta name="description" content="익산 지역의 2025년 최신 웨딩박람회 일정과 장소, 혜택을 한눈에 확인하세요." />
-        <meta name="keywords" content="익산 웨딩박람회, 익산 결혼박람회, 익산 스드메" />
+        <title>청주웨딩박람회 일정 안내 | 2025년 최신 업데이트</title>
+        <meta name="description" content="청주 지역의 2025년 최신 웨딩박람회 일정과 장소, 혜택을 한눈에 확인하세요." />
+        <meta name="keywords" content="청주 웨딩박람회, 청주 결혼박람회, 청주 스드메" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
-        <link rel="canonical" href="https://wdkor.co.kr/yigsan" />
-        <meta property="og:title" content="익산웨딩박람회 일정 안내 | 2025년 최신 업데이트" />
-        <meta property="og:description" content="익산 지역의 2025년 최신 웨딩박람회 일정과 장소, 혜택을 한눈에 확인하세요." />
-        <meta property="og:url" content="https://wdkor.co.kr/yigsan" />
+        <link rel="canonical" href="https://wdkor.co.kr/cheng" />
+        <meta property="og:title" content="청주웨딩박람회 일정 안내 | 2025년 최신 업데이트" />
+        <meta property="og:description" content="청주 지역의 2025년 최신 웨딩박람회 일정과 장소, 혜택을 한눈에 확인하세요." />
+        <meta property="og:url" content="https://wdkor.co.kr/cheng" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="웨딩박람회 일정 총정리" />
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content="익산웨딩박람회 일정 안내 | 2025년 최신 업데이트" />
-        <meta name="twitter:description" content="익산 지역의 2025년 최신 웨딩박람회 일정과 장소, 혜택을 한눈에 확인하세요." />
+        <meta name="twitter:title" content="청주웨딩박람회 일정 안내 | 2025년 최신 업데이트" />
+        <meta name="twitter:description" content="청주 지역의 2025년 최신 웨딩박람회 일정과 장소, 혜택을 한눈에 확인하세요." />
         <meta name="robots" content="index, follow" />
         <script
           type="application/ld+json"
@@ -29,14 +29,14 @@ export default function yigsan({ sheetData }) {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Event",
-              "name": "익산웨딩박람회",
+              "name": "청주웨딩박람회",
               "startDate": "2025-01-01",
               "location": {
                 "@type": "Place",
-                "name": "익산 웨딩박람회 장소"
+                "name": "청주 웨딩박람회 장소"
               },
-              "description": "익산 지역의 2025년 최신 웨딩박람회 일정과 장소, 혜택을 한눈에 확인하세요.",
-              "url": "https://wdkor.co.kr/yigsan"
+              "description": "청주 지역의 2025년 최신 웨딩박람회 일정과 장소, 혜택을 한눈에 확인하세요.",
+              "url": "https://wdkor.co.kr/cheng"
             })
           }}
         />
@@ -49,13 +49,13 @@ export default function yigsan({ sheetData }) {
         <div className="container" style={{ padding: '30px' }}>
           <Link href="/" passHref>
             <h1 style={{ textAlign: 'center', marginBottom: '30px', cursor: 'pointer' }}>
-              2025 익산 웨딩박람회
+              2025 청주 웨딩박람회
             </h1>
           </Link>
 
           {(() => {
-            const currentRegionData = sheetData.filter((row) => row[0] === '익산');
-            const otherRegionData = sheetData.filter((row) => row[0] !== '익산');
+            const currentRegionData = sheetData.filter((row) => row[0] === '청주');
+            const otherRegionData = sheetData.filter((row) => row[0] !== '청주');
             
             return (
               <>
