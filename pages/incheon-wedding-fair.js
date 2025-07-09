@@ -38,11 +38,11 @@ export default function 인천웨딩박람회({ sheetData }) {
                 
                 <ul style={{ listStyle: 'none', padding: 0 }}>
                   {currentRegionData.map((row, index) => (
-                    <li key={`current-${index}`} style={{ marginBottom: '20px', border: '1px solid #ddd', borderRadius: '8px', overflow: 'hidden' }}>
-                      <a href={row[5] || '#'} target="_blank" rel="noopener noreferrer" style={{ display: 'flex', gap: '20px' }}>
-                        <img src={row[1] || '/placeholder.jpg'} alt={row[2] || '웨딩박람회'} style={{ width: '200px', height: 'auto' }} />
+                    <li key={`current-${index}`} className="fair-item">
+                      <a href={row[5] || '#'} target="_blank" rel="noopener noreferrer">
+                        <img src={row[1] || '/placeholder.jpg'} alt={row[2] || '웨딩박람회'} />
                         <div>
-                          <h3 style={{ margin: 0 }}>{row[2] || '웨딩박람회'}</h3>
+                          <h3>{row[2] || '웨딩박람회'}</h3>
                           <p style={{ color: 'red', fontWeight: 'bold' }}>{row[3] || ''}</p>
                           <p style={{ color: '#666' }}>{row[4] || ''}</p>
                         </div>
@@ -59,11 +59,11 @@ export default function 인천웨딩박람회({ sheetData }) {
                   )}
                   
                   {otherRegionData.map((row, index) => (
-                    <li key={`other-${index}`} style={{ marginBottom: '20px', border: '1px solid #ddd', borderRadius: '8px', overflow: 'hidden' }}>
-                      <a href={row[5] || '#'} target="_blank" rel="noopener noreferrer" style={{ display: 'flex', gap: '20px' }}>
-                        <img src={row[1] || '/placeholder.jpg'} alt={row[2] || '웨딩박람회'} style={{ width: '200px', height: 'auto' }} />
+                    <li key={`other-${index}`} className="fair-item">
+                      <a href={row[5] || '#'} target="_blank" rel="noopener noreferrer">
+                        <img src={row[1] || '/placeholder.jpg'} alt={row[2] || '웨딩박람회'} />
                         <div>
-                          <h3 style={{ margin: 0 }}>{row[2] || '웨딩박람회'}</h3>
+                          <h3>{row[2] || '웨딩박람회'}</h3>
                           <p style={{ color: 'red', fontWeight: 'bold' }}>{row[3] || ''}</p>
                           <p style={{ color: '#666' }}>{row[4] || ''}</p>
                           <p style={{ color: '#999', fontSize: '14px' }}>📍 {row[0]}</p>

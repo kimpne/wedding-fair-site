@@ -192,7 +192,7 @@ header p {
   .container {
     padding: 20px 15px;
   }
-  
+
   .fair-item a {
     flex-direction: column;
     text-align: left;
@@ -204,12 +204,12 @@ header p {
     height: 200px !important;
     max-width: 100%;
   }
-  
+
   .fair-item h3 {
     font-size: 1rem;
     margin-bottom: 8px;
   }
-  
+
   .fair-item p {
     font-size: 0.9rem;
   }
@@ -219,23 +219,23 @@ header p {
   .container {
     padding: 15px 10px;
   }
-  
+
   .fair-item {
     margin-bottom: 15px;
   }
-  
+
   .fair-item a {
     padding: 12px;
   }
-  
+
   .fair-item img {
     height: 180px !important;
   }
-  
+
   .fair-item h3 {
     font-size: 0.95rem;
   }
-  
+
   .fair-item p {
     font-size: 0.85rem;
   }
@@ -244,5 +244,88 @@ header p {
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
+  }
+}
+
+/* 지역 탭 메뉴 */
+.tabmenu {
+  background-color: #f0f0f0;
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.tabmenu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 10px;
+  padding: 0 20px;
+}
+
+.tabmenu li {
+  flex-shrink: 0;
+}
+
+.tabmenu a {
+  display: block;
+  padding: 10px 15px;
+  text-decoration: none;
+  color: #333;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: white;
+  transition: all 0.3s ease;
+  font-size: 14px;
+  min-width: 70px;
+  text-align: center;
+}
+
+.tabmenu a:hover {
+  background-color: #E91E63;
+  color: white;
+  border-color: #E91E63;
+}
+
+.tabmenu .active a {
+  background-color: #E91E63;
+  color: white;
+  border-color: #E91E63;
+}
+
+/* 모바일 최적화 */
+@media (max-width: 768px) {
+  .tabmenu {
+    padding: 8px 0;
+  }
+
+  .tabmenu ul {
+    gap: 8px;
+    padding: 0 16px;
+  }
+
+  .tabmenu a {
+    padding: 8px 12px;
+    font-size: 13px;
+    min-width: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tabmenu {
+    padding: 6px 0;
+  }
+
+  .tabmenu ul {
+    gap: 6px;
+    padding: 0 12px;
+  }
+
+  .tabmenu a {
+    padding: 6px 10px;
+    font-size: 12px;
+    min-width: 50px;
   }
 }
