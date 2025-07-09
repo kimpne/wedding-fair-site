@@ -43,10 +43,11 @@ export default function 울산웨딩박람회({ sheetData }) {
 
       <main>
         <div className="container">
-          <ul>
-            {safeSheetData.filter((row) => row[0] === '울산')
-              .map((row, idx) => (
-                <li key={idx} style={{ borderBottom: '1px dashed #ccc', padding: '20px 0' }}>
+          <ul style={{ listStyle: 'none', padding: 0 }}>
+            {safeSheetData
+              .filter((row) => row[0] === '울산')
+              .map((row, index) => (
+                <li key={index} style={{ marginBottom: '20px', border: '1px solid #ddd', borderRadius: '8px', overflow: 'hidden' }}>
                   <a href={row[5]} target="_blank" rel="noopener noreferrer" style={{ display: 'flex', gap: '20px' }}>
                     <img src={row[1]} alt={row[2]} style={{ width: '200px', height: 'auto' }} />
                     <div>
@@ -71,7 +72,7 @@ export async function getServerSideProps() {
 
   try {
     const credentials = JSON.parse(process.env.GOOGLE_CREDENTIALS || '{}');
-    
+
     const auth = new google.auth.GoogleAuth({
       credentials: credentials,
       scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly'],

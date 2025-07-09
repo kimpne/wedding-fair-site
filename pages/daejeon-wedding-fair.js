@@ -29,24 +29,13 @@ export default function 대전웨딩박람회({ sheetData }) {
           
           <ul style={{ listStyle: 'none', padding: 0 }}>
             {safeSheetData
-              .filter((row) => row[1] && row[1].includes('대전'))
+              .filter((row) => row[0] === '대전')
               .map((row, index) => (
                 <li key={index} style={{ marginBottom: '20px', border: '1px solid #ddd', borderRadius: '8px', overflow: 'hidden' }}>
-                  <a
-                    href={row[0] || '#'}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{
-                      display: 'block',
-                      padding: '15px',
-                      textDecoration: 'none',
-                      color: 'inherit',
-                      backgroundColor: '#f9f9f9',
-                      transition: 'background-color 0.2s',
-                    }}
-                  >
+                  <a href={row[5]} target="_blank" rel="noopener noreferrer" style={{ display: 'flex', gap: '20px' }}>
+                    <img src={row[1]} alt={row[2]} style={{ width: '200px', height: 'auto' }} />
                     <div>
-                      <h3 style={{ color: '#E91E63', margin: '0 0 10px 0' }}>{row[2]}</h3>
+                      <h3 style={{ margin: 0 }}>{row[2]}</h3>
                       <p style={{ color: 'red', fontWeight: 'bold' }}>{row[3]}</p>
                       <p style={{ color: '#666' }}>{row[4]}</p>
                     </div>
