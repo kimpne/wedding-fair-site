@@ -12,7 +12,7 @@ export default async function handler(req, res) {
 
     const sheets = google.sheets({ version: 'v4', auth });
     const spreadsheetId = '1ndcPLgJV-NeW3zWB4NCZzJM3E7EKAK01cdI1pSycnfI';
-    const range = '시트1!A2:D';
+    const range = '시트1!A2:F';
 
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId,
