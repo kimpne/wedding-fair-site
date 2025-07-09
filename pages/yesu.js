@@ -30,7 +30,7 @@ export default function yesu({ sheetData }) {
           {(() => {
             const currentRegionData = sheetData.filter((row) => row[0] === '여수');
             const otherRegionData = sheetData.filter((row) => row[0] !== '여수');
-            
+
             return (
               <>
                 {currentRegionData.length === 0 && (
@@ -38,21 +38,21 @@ export default function yesu({ sheetData }) {
                     ※ 현재 이 지역의 박람회 일정이 없어 전체 최신 박람회 일정으로 대체 노출됩니다.
                   </p>
                 )}
-                
+
                 <ul style={{ listStyle: 'none', padding: 0 }}>
                   {currentRegionData.map((row, index) => (
-                    <li key={`current-${index}`} style={{ marginBottom: '20px', border: '1px solid #ddd', borderRadius: '8px', overflow: 'hidden' }}>
-                      <a href={row[5] || '#'} target="_blank" rel="noopener noreferrer" style={{ display: 'flex', gap: '20px' }}>
-                        <img src={row[1] || '/placeholder.jpg'} alt={row[2] || '웨딩박람회'} style={{ width: '200px', height: 'auto' }} />
+                    <li key={`current-${index}`} className="fair-item">
+                      <a href={row[5] || '#'} target="_blank" rel="noopener noreferrer">
+                        <img src={row[1] || '/placeholder.jpg'} alt={row[2] || '웨딩박람회'} />
                         <div>
-                          <h3 style={{ margin: 0 }}>{row[2] || '웨딩박람회'}</h3>
+                          <h3>{row[2] || '웨딩박람회'}</h3>
                           <p style={{ color: 'red', fontWeight: 'bold' }}>{row[3] || ''}</p>
                           <p style={{ color: '#666' }}>{row[4] || ''}</p>
                         </div>
                       </a>
                     </li>
                   ))}
-                  
+
                   {currentRegionData.length > 0 && otherRegionData.length > 0 && (
                     <li style={{ margin: '40px 0 20px 0', textAlign: 'center' }}>
                       <h2 style={{ color: '#333', borderBottom: '2px solid #ddd', paddingBottom: '10px' }}>
@@ -60,13 +60,13 @@ export default function yesu({ sheetData }) {
                       </h2>
                     </li>
                   )}
-                  
+
                   {otherRegionData.map((row, index) => (
-                    <li key={`other-${index}`} style={{ marginBottom: '20px', border: '1px solid #ddd', borderRadius: '8px', overflow: 'hidden' }}>
-                      <a href={row[5] || '#'} target="_blank" rel="noopener noreferrer" style={{ display: 'flex', gap: '20px' }}>
-                        <img src={row[1] || '/placeholder.jpg'} alt={row[2] || '웨딩박람회'} style={{ width: '200px', height: 'auto' }} />
+                    <li key={`other-${index}`} className="fair-item">
+                      <a href={row[5] || '#'} target="_blank" rel="noopener noreferrer">
+                        <img src={row[1] || '/placeholder.jpg'} alt={row[2] || '웨딩박람회'} />
                         <div>
-                          <h3 style={{ margin: 0 }}>{row[2] || '웨딩박람회'}</h3>
+                          <h3>{row[2] || '웨딩박람회'}</h3>
                           <p style={{ color: 'red', fontWeight: 'bold' }}>{row[3] || ''}</p>
                           <p style={{ color: '#666' }}>{row[4] || ''}</p>
                           <p style={{ color: '#999', fontSize: '14px' }}>📍 {row[0]}</p>
@@ -89,10 +89,10 @@ export default function yesu({ sheetData }) {
 export async function getStaticProps() {
   const fs = await import('fs');
   const path = await import('path');
-  
+
   try {
     const jsonPath = path.default.join(process.cwd(), 'public', 'wedding-fair-data.json');
-    
+
     if (!fs.default.existsSync(jsonPath)) {
       return {
         props: {
@@ -101,7 +101,7 @@ export async function getStaticProps() {
         revalidate: 60,
       };
     }
-    
+
     const jsonData = fs.default.readFileSync(jsonPath, 'utf-8');
     const sheetData = JSON.parse(jsonData);
 
