@@ -38,22 +38,44 @@ async function generatePages() {
 import HeaderNotice from '../components/HeaderNotice';
 import RegionTabs from '../components/RegionTabs';
 import InternalLinks from '../components/InternalLinks';
+import Link from 'next/link';
 
 export default function ${safeSlug.replace(/\s+/g, '')}({ sheetData }) {
   return (
     <>
       <Head>
-        <title>2025 ${safeRegion}웨딩박람회 일정 총정리 | 최신 박람회 정보</title>
-        <meta
-          name="description"
-          content="2025년 ${safeRegion}웨딩박람회 일정을 한눈에 확인하세요! 최신 박람회 정보와 혜택을 놓치지 마세요."
-        />
+        <title>${safeRegion}웨딩박람회 일정 안내 | 2025년 최신 업데이트</title>
+        <meta name="description" content="${safeRegion} 지역의 2025년 최신 웨딩박람회 일정과 장소, 혜택을 한눈에 확인하세요." />
+        <meta name="keywords" content="${safeRegion} 웨딩박람회, ${safeRegion} 결혼박람회, ${safeRegion} 스드메" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
         <link rel="canonical" href="${BASE_URL}/${safeSlug}" />
-        <meta property="og:title" content="2025 ${safeRegion}웨딩박람회 일정 총정리" />
-        <meta property="og:description" content="2025년 ${safeRegion}웨딩박람회 일정을 한눈에 확인하세요!" />
+        <meta property="og:title" content="${safeRegion}웨딩박람회 일정 안내 | 2025년 최신 업데이트" />
+        <meta property="og:description" content="${safeRegion} 지역의 2025년 최신 웨딩박람회 일정과 장소, 혜택을 한눈에 확인하세요." />
         <meta property="og:url" content="${BASE_URL}/${safeSlug}" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="웨딩박람회 일정 총정리" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="${safeRegion}웨딩박람회 일정 안내 | 2025년 최신 업데이트" />
+        <meta name="twitter:description" content="${safeRegion} 지역의 2025년 최신 웨딩박람회 일정과 장소, 혜택을 한눈에 확인하세요." />
+        <meta name="robots" content="index, follow" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Event",
+              "name": "${safeRegion}웨딩박람회",
+              "startDate": "2025-01-01",
+              "location": {
+                "@type": "Place",
+                "name": "${safeRegion} 웨딩박람회 장소"
+              },
+              "description": "${safeRegion} 지역의 2025년 최신 웨딩박람회 일정과 장소, 혜택을 한눈에 확인하세요.",
+              "url": "${BASE_URL}/${safeSlug}"
+            })
+          }}
+        />
       </Head>
 
       <HeaderNotice />
@@ -61,7 +83,11 @@ export default function ${safeSlug.replace(/\s+/g, '')}({ sheetData }) {
 
       <main>
         <div className="container" style={{ padding: '30px' }}>
-          <h1 style={{ textAlign: 'center', marginBottom: '30px' }}>2025 ${safeRegion} 웨딩박람회</h1>
+          <Link href="/" passHref>
+            <h1 style={{ textAlign: 'center', marginBottom: '30px', cursor: 'pointer' }}>
+              2025 ${safeRegion} 웨딩박람회
+            </h1>
+          </Link>
 
           {(() => {
             const currentRegionData = sheetData.filter((row) => row[0] === '${safeRegion}');
@@ -77,11 +103,11 @@ export default function ${safeSlug.replace(/\s+/g, '')}({ sheetData }) {
                 
                 <ul style={{ listStyle: 'none', padding: 0 }}>
                   {currentRegionData.map((row, index) => (
-                    <li key={\`current-\${index}\`} style={{ marginBottom: '20px', border: '1px solid #ddd', borderRadius: '8px', overflow: 'hidden' }}>
-                      <a href={row[5] || '#'} target="_blank" rel="noopener noreferrer" style={{ display: 'flex', gap: '20px' }}>
-                        <img src={row[1] || '/placeholder.jpg'} alt={row[2] || '웨딩박람회'} style={{ width: '200px', height: 'auto' }} />
+                    <li key={\`current-\${index}\`} className="fair-item">
+                      <a href={row[5] || '#'} target="_blank" rel="noopener noreferrer">
+                        <img src={row[1] || '/placeholder.jpg'} alt={row[2] || '웨딩박람회'} />
                         <div>
-                          <h3 style={{ margin: 0 }}>{row[2] || '웨딩박람회'}</h3>
+                          <h3>{row[2] || '웨딩박람회'}</h3>
                           <p style={{ color: 'red', fontWeight: 'bold' }}>{row[3] || ''}</p>
                           <p style={{ color: '#666' }}>{row[4] || ''}</p>
                         </div>
@@ -98,11 +124,11 @@ export default function ${safeSlug.replace(/\s+/g, '')}({ sheetData }) {
                   )}
                   
                   {otherRegionData.map((row, index) => (
-                    <li key={\`other-\${index}\`} style={{ marginBottom: '20px', border: '1px solid #ddd', borderRadius: '8px', overflow: 'hidden' }}>
-                      <a href={row[5] || '#'} target="_blank" rel="noopener noreferrer" style={{ display: 'flex', gap: '20px' }}>
-                        <img src={row[1] || '/placeholder.jpg'} alt={row[2] || '웨딩박람회'} style={{ width: '200px', height: 'auto' }} />
+                    <li key={\`other-\${index}\`} className="fair-item">
+                      <a href={row[5] || '#'} target="_blank" rel="noopener noreferrer">
+                        <img src={row[1] || '/placeholder.jpg'} alt={row[2] || '웨딩박람회'} />
                         <div>
-                          <h3 style={{ margin: 0 }}>{row[2] || '웨딩박람회'}</h3>
+                          <h3>{row[2] || '웨딩박람회'}</h3>
                           <p style={{ color: 'red', fontWeight: 'bold' }}>{row[3] || ''}</p>
                           <p style={{ color: '#666' }}>{row[4] || ''}</p>
                           <p style={{ color: '#999', fontSize: '14px' }}>📍 {row[0]}</p>
