@@ -50,7 +50,7 @@ export default function 서울웨딩박람회({ sheetData }) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const fs = require('fs');
   const path = require('path');
   
@@ -62,6 +62,7 @@ export async function getServerSideProps() {
         props: {
           sheetData: [],
         },
+        revalidate: 60, // 1분마다 재생성
       };
     }
     
@@ -72,13 +73,15 @@ export async function getServerSideProps() {
       props: {
         sheetData: Array.isArray(sheetData) ? sheetData : [],
       },
+      revalidate: 60, // 1분마다 재생성
     };
   } catch (error) {
-    console.error('Error in getServerSideProps:', error);
+    console.error('Error in getStaticProps:', error);
     return {
       props: {
         sheetData: [],
       },
+      revalidate: 60,
     };
   }
 }
