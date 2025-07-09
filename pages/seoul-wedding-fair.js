@@ -3,11 +3,9 @@ import RegionTabs from '../components/RegionTabs';
 import HeaderNotice from '../components/HeaderNotice';
 import InternalLinks from '../components/InternalLinks';
 
-
 export default function 서울웨딩박람회({ sheetData }) {
   return (
     <>
-
       <Head>
         <title>서울웨딩박람회 일정 안내 | 2025년 최신 업데이트</title>
         <meta name="description" content="서울 지역의 2025년 최신 웨딩박람회 일정과 장소, 혜택을 한눈에 확인하세요." />
@@ -35,46 +33,38 @@ export default function 서울웨딩박람회({ sheetData }) {
         />
       </Head>
 
-      
+      <HeaderNotice />
+      <RegionTabs />
 
-      
+      <main>
+        <div className="container">
+          <ul>
+            {sheetData
+              .filter((row) => row[0] === '서울')
+              .map((row, idx) => (
+                <li key={idx} style={{ borderBottom: '1px dashed #ccc', padding: '20px 0' }}>
+                  <a href={row[5]} target="_blank" rel="noopener noreferrer" style={{ display: 'flex', gap: '20px' }}>
+                    <img src={row[1]} alt={row[2]} style={{ width: '200px', height: 'auto' }} />
+                    <div>
+                      <h3 style={{ margin: 0 }}>{row[2]}</h3>
+                      <p style={{ color: 'red', fontWeight: 'bold' }}>{row[3]}</p>
+                      <p style={{ color: '#666' }}>{row[4]}</p>
+                    </div>
+                  </a>
+                </li>
+              ))}
+          </ul>
+        </div>
+      </main>
 
-<HeaderNotice />
-<RegionTabs />
-
-
-
-
-
-<main>
-  <div className="container">
- <ul>
-  {sheetData
-    .filter((row) => row[0] === '서울')
-    .map((row, idx) => (
-      <li key={idx} style={{ borderBottom: '1px dashed #ccc', padding: '20px 0' }}>
-        <a href={row[5]} target="_blank" rel="noopener noreferrer" style={{ display: 'flex', gap: '20px' }}>
-          <img src={row[1]} alt={row[2]} style={{ width: '200px', height: 'auto' }} />
-          <div>
-            <h3 style={{ margin: 0 }}>{row[2]}</h3>
-            <p style={{ color: 'red', fontWeight: 'bold' }}>{row[3]}</p>
-            <p style={{ color: '#666' }}>{row[4]}</p>
-          </div>
-        </a>
-      </li>
-    ))}
-        </ul>
-      </div>
-    </main>
-
-    <InternalLinks />
-  </>
+      <InternalLinks />
+    </>
   );
 }
 
 export async function getServerSideProps() {
   const { getSheetData } = require('../lib/sheet');
-  
+
   try {
     const sheetData = await getSheetData();
     return {
@@ -90,23 +80,4 @@ export async function getServerSideProps() {
       },
     };
   }
-}w[4]}</p>
-          </div>
-            </a>
-          </li>
-        ))}
-    </ul>
-
-    <InternalLinks />
-  </div>
-</main>
-    </>
-  );
-}
-
-export async function getServerSideProps() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/sheet`);
-  const sheetData = await res.json();
-
-  return { props: { sheetData } };
 }
