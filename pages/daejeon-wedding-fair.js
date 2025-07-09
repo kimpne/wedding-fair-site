@@ -1,4 +1,3 @@
-
 import Head from 'next/head';
 import HeaderNotice from '../components/HeaderNotice';
 import RegionTabs from '../components/RegionTabs';
@@ -27,7 +26,7 @@ export default function 대전웨딩박람회({ sheetData }) {
           {(() => {
             const currentRegionData = sheetData.filter((row) => row[0] === '대전');
             const otherRegionData = sheetData.filter((row) => row[0] !== '대전');
-            
+
             return (
               <>
                 {currentRegionData.length === 0 && (
@@ -35,7 +34,7 @@ export default function 대전웨딩박람회({ sheetData }) {
                     ※ 현재 이 지역의 박람회 일정이 없어 전체 최신 박람회 일정으로 대체 노출됩니다.
                   </p>
                 )}
-                
+
                 <ul style={{ listStyle: 'none', padding: 0 }}>
                   {currentRegionData.map((row, index) => (
                     <li key={`current-${index}`} style={{ marginBottom: '20px', border: '1px solid #ddd', borderRadius: '8px', overflow: 'hidden' }}>
@@ -49,7 +48,7 @@ export default function 대전웨딩박람회({ sheetData }) {
                       </a>
                     </li>
                   ))}
-                  
+
                   {currentRegionData.length > 0 && otherRegionData.length > 0 && (
                     <li style={{ margin: '40px 0 20px 0', textAlign: 'center' }}>
                       <h2 style={{ color: '#333', borderBottom: '2px solid #ddd', paddingBottom: '10px' }}>
@@ -57,7 +56,7 @@ export default function 대전웨딩박람회({ sheetData }) {
                       </h2>
                     </li>
                   )}
-                  
+
                   {otherRegionData.map((row, index) => (
                     <li key={`other-${index}`} style={{ marginBottom: '20px', border: '1px solid #ddd', borderRadius: '8px', overflow: 'hidden' }}>
                       <a href={row[5] || '#'} target="_blank" rel="noopener noreferrer" style={{ display: 'flex', gap: '20px' }}>
@@ -84,13 +83,13 @@ export default function 대전웨딩박람회({ sheetData }) {
 }
 
 export async function getStaticProps() {
-  const fs = require('fs');
-  const path = require('path');
-  
+  const fs = await import('fs');
+  const path = await import('path');
+
   try {
-    const jsonPath = path.join(process.cwd(), 'public', 'wedding-fair-data.json');
-    
-    if (!fs.existsSync(jsonPath)) {
+    const jsonPath = path.default.join(process.cwd(), 'public', 'wedding-fair-data.json');
+
+    if (!fs.default.existsSync(jsonPath)) {
       return {
         props: {
           sheetData: [],
@@ -98,8 +97,8 @@ export async function getStaticProps() {
         revalidate: 60,
       };
     }
-    
-    const jsonData = fs.readFileSync(jsonPath, 'utf-8');
+
+    const jsonData = fs.default.readFileSync(jsonPath, 'utf-8');
     const sheetData = JSON.parse(jsonData);
 
     return {

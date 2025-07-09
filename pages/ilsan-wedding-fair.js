@@ -84,13 +84,13 @@ export default function 일산웨딩박람회({ sheetData }) {
 }
 
 export async function getStaticProps() {
-  const fs = require('fs');
-  const path = require('path');
+  const fs = await import('fs');
+  const path = await import('path');
   
   try {
-    const jsonPath = path.join(process.cwd(), 'public', 'wedding-fair-data.json');
+    const jsonPath = path.default.join(process.cwd(), 'public', 'wedding-fair-data.json');
     
-    if (!fs.existsSync(jsonPath)) {
+    if (!fs.default.existsSync(jsonPath)) {
       return {
         props: {
           sheetData: [],
@@ -99,7 +99,7 @@ export async function getStaticProps() {
       };
     }
     
-    const jsonData = fs.readFileSync(jsonPath, 'utf-8');
+    const jsonData = fs.default.readFileSync(jsonPath, 'utf-8');
     const sheetData = JSON.parse(jsonData);
 
     return {
