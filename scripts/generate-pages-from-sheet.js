@@ -12,6 +12,41 @@ const auth = new google.auth.GoogleAuth({
   scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly'],
 });
 
+async function generateSitemap() {
+  try {
+    const pagesDir = path.join(__dirname, '..', 'pages');
+    const files = fs.readdirSync(pagesDir).filter((file) => file.endsWith('.js') && !file.startsWith('_') && !file.startsWith('api'));
+
+    const urls = files.map((file) => {
+      const name = path.basename(file, '.js');
+      if (name === 'index') {
+        return BASE_URL;
+      }
+      return `${BASE_URL}/${name}`;
+    });
+
+    const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls
+  .map(
+    (url) => `  <url>
+    <loc>${url}</loc>
+    <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>`
+  )
+  .join('\n')}
+</urlset>`;
+
+    const sitemapPath = path.join(__dirname, '..', 'public', 'sitemap.xml');
+    fs.writeFileSync(sitemapPath, sitemap, 'utf-8');
+    console.log('✅ sitemap.xml 생성 완료');
+  } catch (error) {
+    console.error('❌ sitemap.xml 생성 중 오류 발생:', error);
+  }
+}
+
 async function generatePages() {
   try {
     if (!process.env.GOOGLE_CREDENTIALS) {
@@ -190,6 +225,11 @@ export async function getStaticProps() {
     });
 
     console.log(`\n🎉 총 ${rows.length}개 페이지 생성 완료!`);
+    
+    // sitemap.xml 생성
+    console.log('\n📋 sitemap.xml 생성 중...');
+    await generateSitemap();
+    
   } catch (error) {
     console.error('❌ 페이지 생성 중 오류 발생:', error);
     
