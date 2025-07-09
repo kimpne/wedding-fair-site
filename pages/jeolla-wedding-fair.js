@@ -41,7 +41,7 @@ export default function 전라웨딩박람회({ sheetData }) {
 
       <main>
         <div className="container">
-        <h1 style="text-align:center;margin-bottom:30px">2025.</h1>
+        <h1 style={{textAlign:"center",marginBottom:"30px"}}>2025.</h1>
           <ul>
             {safeSheetData.filter((row) => row[0] === '전라')
               .map((row, idx) => (
