@@ -8,24 +8,38 @@ export default function 서울웨딩박람회({ sheetData }) {
   return (
     <>
       <Head>
-        <title>2025 서울웨딩박람회 일정 총정리 | 최신 박람회 정보</title>
-        <meta
-          name="description"
-          content="2025년 서울웨딩박람회 일정을 한눈에 확인하세요! 최신 박람회 정보와 혜택을 놓치지 마세요."
-        />
+        <title>서울웨딩박람회 일정 안내 | 2025년 최신 업데이트</title>
+        <meta name="description" content="서울 지역의 2025년 최신 웨딩박람회 일정과 장소, 혜택을 한눈에 확인하세요." />
+        <meta name="keywords" content="서울 웨딩박람회, 서울 결혼박람회, 서울 스드메" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
         <link rel="canonical" href="https://wdkor.co.kr/seoul-wedding-fair" />
-        <meta property="og:title" content="2025 서울웨딩박람회 일정 총정리" />
-        <meta property="og:description" content="2025년 서울웨딩박람회 일정을 한눈에 확인하세요!" />
+        <meta property="og:title" content="서울웨딩박람회 일정 안내 | 2025년 최신 업데이트" />
+        <meta property="og:description" content="서울 지역의 2025년 최신 웨딩박람회 일정과 장소, 혜택을 한눈에 확인하세요." />
         <meta property="og:url" content="https://wdkor.co.kr/seoul-wedding-fair" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="웨딩박람회 일정 총정리" />
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content="2025 서울웨딩박람회 일정 총정리" />
-        <meta name="twitter:description" content="2025년 서울웨딩박람회 일정을 한눈에 확인하세요!" />
-        <meta name="keywords" content="서울웨딩박람회, 2025웨딩박람회, 서울웨딩, 웨딩박람회일정" />
+        <meta name="twitter:title" content="서울웨딩박람회 일정 안내 | 2025년 최신 업데이트" />
+        <meta name="twitter:description" content="서울 지역의 2025년 최신 웨딩박람회 일정과 장소, 혜택을 한눈에 확인하세요." />
         <meta name="robots" content="index, follow" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Event",
+              "name": "서울웨딩박람회",
+              "startDate": "2025-01-01",
+              "location": {
+                "@type": "Place",
+                "name": "서울 웨딩박람회 장소"
+              },
+              "description": "서울 지역의 2025년 최신 웨딩박람회 일정과 장소, 혜택을 한눈에 확인하세요.",
+              "url": "https://wdkor.co.kr/seoul-wedding-fair"
+            })
+          }}
+        />
       </Head>
 
       <HeaderNotice />
