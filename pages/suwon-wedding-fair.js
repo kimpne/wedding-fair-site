@@ -1,4 +1,7 @@
 import Head from 'next/head';
+import HeaderNotice from '../components/HeaderNotice';
+import RegionTabs from '../components/RegionTabs';
+import InternalLinks from '../components/InternalLinks';
 import RegionTabs from '../components/RegionTabs';
 import HeaderNotice from '../components/HeaderNotice';
 import InternalLinks from '../components/InternalLinks';
@@ -81,24 +84,7 @@ export async function getServerSideProps() {
       },
     };
   }
-} = require('../lib/sheet');
-  
-  try {
-    const sheetData = await getSheetData();
-    return {
-      props: {
-        sheetData: sheetData || [],
-      },
-    };
-  } catch (error) {
-    console.error('Error fetching sheet data:', error);
-    return {
-      props: {
-        sheetData: [],
-      },
-    };
-  }
-{row[4]}</p>
+w[4]}</p>
           </div>
             </a>
           </li>

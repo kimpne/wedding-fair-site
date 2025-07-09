@@ -1,4 +1,7 @@
 import Head from 'next/head';
+import HeaderNotice from '../components/HeaderNotice';
+import RegionTabs from '../components/RegionTabs';
+import InternalLinks from '../components/InternalLinks';
 import RegionTabs from '../components/RegionTabs';
 import HeaderNotice from '../components/HeaderNotice';
 import InternalLinks from '../components/InternalLinks';
