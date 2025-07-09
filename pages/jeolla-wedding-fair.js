@@ -14,6 +14,17 @@ export default function 전라도웨딩박람회({ sheetData }) {
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
+        <link rel="canonical" href="https://wdkor.co.kr/jeolla-wedding-fair" />
+        <meta property="og:title" content="2025 전라웨딩박람회 일정 총정리" />
+        <meta property="og:description" content="2025년 전라웨딩박람회 일정을 한눈에 확인하세요!" />
+        <meta property="og:url" content="https://wdkor.co.kr/jeolla-wedding-fair" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="웨딩박람회 일정 총정리" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="2025 전라웨딩박람회 일정 총정리" />
+        <meta name="twitter:description" content="2025년 전라웨딩박람회 일정을 한눈에 확인하세요!" />
+        <meta name="keywords" content="전라웨딩박람회, 2025웨딩박람회, 전라웨딩, 웨딩박람회일정" />
+        <meta name="robots" content="index, follow" />
       </Head>
 
       <HeaderNotice />
