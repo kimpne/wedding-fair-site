@@ -69,8 +69,8 @@ export default function Home() {
           justify-content: center;
           padding: 20px;
           background: #fafafa;
-          border: 2px solid #ddd;
-          border-radius: 12px;
+          border: 1px solid #ccc;
+          border-radius: 8px;
           text-decoration: none;
           color: #E91E63;
           font-weight: 600;
@@ -78,12 +78,12 @@ export default function Home() {
           text-align: center;
           min-height: 80px;
           transition: all 0.3s ease;
-          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .region-card:hover {
-          transform: translateY(-4px);
-          box-shadow: 0 8px 25px rgba(233, 30, 99, 0.2);
+          transform: translateY(-2px);
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
           border-color: #E91E63;
           background: #f0f0f0;
           text-decoration: none;
