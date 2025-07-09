@@ -8,12 +8,16 @@ const RANGE = '시트2!A:B';
 const BASE_URL = 'https://wdkor.co.kr';
 
 const auth = new google.auth.GoogleAuth({
-  keyFile: path.join(__dirname, '..', 'credentials.json'),
+  credentials: JSON.parse(process.env.GOOGLE_CREDENTIALS || '{}'),
   scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly'],
 });
 
 async function generatePages() {
   try {
+    if (!process.env.GOOGLE_CREDENTIALS) {
+      throw new Error('GOOGLE_CREDENTIALS 환경변수가 설정되지 않았습니다.');
+    }
+    
     const client = await auth.getClient();
     const sheets = google.sheets({ version: 'v4', auth: client });
 
@@ -163,11 +167,12 @@ export async function getStaticProps() {
   } catch (error) {
     console.error('❌ 페이지 생성 중 오류 발생:', error);
     
-    if (error.message.includes('credentials.json')) {
+    if (error.message.includes('GOOGLE_CREDENTIALS')) {
       console.log('\n💡 해결방법:');
       console.log('1. Google Cloud Console에서 서비스 계정 키를 다운로드');
-      console.log('2. credentials.json 파일을 프로젝트 루트에 저장');
-      console.log('3. Google Sheets API 활성화 확인');
+      console.log('2. Replit Secrets에 GOOGLE_CREDENTIALS 환경변수 설정');
+      console.log('3. JSON 내용을 문자열로 변환해서 입력');
+      console.log('4. Google Sheets API 활성화 확인');
     }
   }
 }
