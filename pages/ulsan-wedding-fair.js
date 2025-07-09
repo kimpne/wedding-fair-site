@@ -39,6 +39,8 @@ export default function 울산웨딩박람회({ sheetData }) {
       <HeaderNotice />
       <RegionTabs />
 
+      <h1 style={{ textAlign: 'center', marginBottom: '30px' }}>2025 울산웨딩박람회</h1>
+
       <main>
         <div className="container">
           <ul>

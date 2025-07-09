@@ -1,4 +1,3 @@
-
 import Head from 'next/head';
 import RegionTabs from '../components/RegionTabs';
 import HeaderNotice from '../components/HeaderNotice';
@@ -7,6 +6,7 @@ import InternalLinks from '../components/InternalLinks';
 export default function 전라웨딩박람회({ sheetData }) {
   // Ensure sheetData is always an array
   const safeSheetData = Array.isArray(sheetData) ? sheetData : [];
+
   return (
     <>
       <Head>
@@ -41,6 +41,7 @@ export default function 전라웨딩박람회({ sheetData }) {
 
       <main>
         <div className="container">
+        <h1 style="text-align:center;margin-bottom:30px">2025.</h1>
           <ul>
             {safeSheetData.filter((row) => row[0] === '전라')
               .map((row, idx) => (
@@ -66,7 +67,7 @@ export default function 전라웨딩박람회({ sheetData }) {
 
 export async function getServerSideProps() {
   const { getSheetData } = require('../lib/sheet');
-  
+
   try {
     const sheetData = await getSheetData();
     return {
