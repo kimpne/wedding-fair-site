@@ -1,4 +1,3 @@
-
 import Head from 'next/head';
 import HeaderNotice from '../components/HeaderNotice';
 import RegionTabs from '../components/RegionTabs';
@@ -26,7 +25,7 @@ export default function 서울웨딩박람회({ sheetData }) {
       <main>
         <div className="container" style={{ padding: '30px' }}>
           <h1 style={{ textAlign: 'center', marginBottom: '30px' }}>2025 서울웨딩박람회</h1>
-          
+
           <ul style={{ listStyle: 'none', padding: 0 }}>
             {safeSheetData
               .filter((row) => row[1] && row[1].includes('서울'))
