@@ -31,12 +31,12 @@ export default function 광주웨딩박람회({ sheetData }) {
               .filter((row) => row[0] === '광주')
               .map((row, index) => (
                 <li key={index} style={{ marginBottom: '20px', border: '1px solid #ddd', borderRadius: '8px', overflow: 'hidden' }}>
-                  <a href={row[3] || '#'} target="_blank" rel="noopener noreferrer" style={{ display: 'flex', gap: '20px' }}>
+                  <a href={row[5] || '#'} target="_blank" rel="noopener noreferrer" style={{ display: 'flex', gap: '20px' }}>
                     <img src={row[1] || '/placeholder.jpg'} alt={row[2] || '웨딩박람회'} style={{ width: '200px', height: 'auto' }} />
                     <div>
                       <h3 style={{ margin: 0 }}>{row[2] || '웨딩박람회'}</h3>
-                      <p style={{ color: 'red', fontWeight: 'bold' }}>{row[1] || ''}</p>
-                      <p style={{ color: '#666' }}>{row[3] || ''}</p>
+                      <p style={{ color: 'red', fontWeight: 'bold' }}>{row[3] || ''}</p>
+                      <p style={{ color: '#666' }}>{row[4] || ''}</p>
                     </div>
                   </a>
                 </li>
