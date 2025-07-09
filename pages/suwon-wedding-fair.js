@@ -2,55 +2,33 @@ import Head from 'next/head';
 import HeaderNotice from '../components/HeaderNotice';
 import RegionTabs from '../components/RegionTabs';
 import InternalLinks from '../components/InternalLinks';
-import RegionTabs from '../components/RegionTabs';
-import HeaderNotice from '../components/HeaderNotice';
-import InternalLinks from '../components/InternalLinks';
 
 export default function 수원웨딩박람회({ sheetData }) {
   // Ensure sheetData is always an array
   const safeSheetData = Array.isArray(sheetData) ? sheetData : [];
+
   return (
     <>
       <Head>
-        <title>수원웨딩박람회 일정 안내 | 2025년 최신 업데이트</title>
-        <meta name="description" content="수원 지역의 2025년 최신 웨딩박람회 일정과 장소, 혜택을 한눈에 확인하세요." />
-        <meta name="keywords" content="수원 웨딩박람회, 수원 결혼박람회, 수원 스드메" />
-        <link rel="canonical" href="https://wdkor.co.kr/suwon-wedding-fair" />
-        <meta property="og:title" content="수원웨딩박람회 일정 안내 | 2025년 최신 업데이트" />
-        <meta property="og:description" content="수원 지역의 2025년 최신 웨딩박람회 일정과 장소, 혜택을 한눈에 확인하세요." />
-        <meta property="og:url" content="https://wdkor.co.kr/suwon-wedding-fair" />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Event",
-              "name": "수원웨딩박람회",
-              "startDate": "2025-01-01",
-              "location": {
-                "@type": "Place",
-                "name": "수원 웨딩박람회 장소"
-              },
-              "description": "수원 지역의 2025년 최신 웨딩박람회 일정과 장소, 혜택을 한눈에 확인하세요.",
-              "url": "https://wdkor.co.kr/suwon-wedding-fair"
-            })
-          }}
-        />
+        <title>수원 웨딩박람회 일정 정보</title>
+        <meta name="description" content="수원 지역의 최신 웨딩박람회 일정과 정보를 확인하세요." />
       </Head>
 
       <HeaderNotice />
-      <RegionTabs />
+      <RegionTabs currentRegion="suwon" />
 
-      <main>
-        <div className="container">
-          <ul>
-            {safeSheetData.filter((row) => row[0] === '수원')
-              .map((row, idx) => (
-                <li key={idx} style={{ borderBottom: '1px dashed #ccc', padding: '20px 0' }}>
-                  <a href={row[5]} target="_blank" rel="noopener noreferrer" style={{ display: 'flex', gap: '20px' }}>
-                    <img src={row[1]} alt={row[2]} style={{ width: '200px', height: 'auto' }} />
+      <main style={{ padding: '20px', maxWidth: '1200px', margin: '0 auto' }}>
+        <h1>수원 웨딩박람회</h1>
+
+        <div>
+          <ul style={{ listStyle: 'none', padding: 0 }}>
+            {safeSheetData
+              .filter(row => row && row[1] && row[1].includes('수원'))
+              .map((row, index) => (
+                <li key={index} style={{ marginBottom: '20px', border: '1px solid #ddd', borderRadius: '8px' }}>
+                  <a href={row[5]} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: 'inherit', display: 'block', padding: '15px' }}>
                     <div>
-                      <h3 style={{ margin: 0 }}>{row[2]}</h3>
+                      <h3>{row[2]}</h3>
                       <p style={{ color: 'red', fontWeight: 'bold' }}>{row[3]}</p>
                       <p style={{ color: '#666' }}>{row[4]}</p>
                     </div>
@@ -68,7 +46,7 @@ export default function 수원웨딩박람회({ sheetData }) {
 
 export async function getServerSideProps() {
   const { getSheetData } = require('../lib/sheet');
-  
+
   try {
     const sheetData = await getSheetData();
     return {
@@ -84,23 +62,4 @@ export async function getServerSideProps() {
       },
     };
   }
-w[4]}</p>
-          </div>
-            </a>
-          </li>
-        ))}
-    </ul>
-
-    <InternalLinks />
-  </div>
-</main>
-    </>
-  );
-}
-
-export async function getServerSideProps() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/sheet`);
-  const sheetData = await res.json();
-
-  return { props: { sheetData } };
 }
