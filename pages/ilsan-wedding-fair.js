@@ -32,8 +32,8 @@ export default function 일산웨딩박람회({ sheetData }) {
               .filter((row) => row[0] === '일산')
               .map((row, index) => (
                 <li key={index} style={{ marginBottom: '20px', border: '1px solid #ddd', borderRadius: '8px', overflow: 'hidden' }}>
-                  <a href={row[5]} target="_blank" rel="noopener noreferrer" style={{ display: 'flex', gap: '20px' }}>
-                    <img src={row[1]} alt={row[2]} style={{ width: '200px', height: 'auto' }} />
+                  <a href={row[5] || "#"} target="_blank" rel="noopener noreferrer" style={{ display: 'flex', gap: '20px' }}>
+                    <img src={row[1] || "/placeholder.jpg"} alt={row[2] || "웨딩박람회"} style={{ width: '200px', height: 'auto' }} />
                     <div>
                       <h3 style={{ margin: 0 }}>{row[2]}</h3>
                       <p style={{ color: 'red', fontWeight: 'bold' }}>{row[3]}</p>
@@ -52,26 +52,9 @@ export default function 일산웨딩박람회({ sheetData }) {
 }
 
 export async function getServerSideProps() {
-  const { google } = require('googleapis');
-
   try {
-    const credentials = JSON.parse(process.env.GOOGLE_CREDENTIALS || '{}');
-    
-    const auth = new google.auth.GoogleAuth({
-      credentials: credentials,
-      scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly'],
-    });
-
-    const sheets = google.sheets({ version: 'v4', auth });
-    const spreadsheetId = '1ndcPLgJV-NeW3zWB4NCZzJM3E7EKAK01cdI1pSycnfI';
-    const range = '시트1!A2:D';
-
-    const response = await sheets.spreadsheets.values.get({
-      spreadsheetId,
-      range,
-    });
-
-    const sheetData = response.data.values || [];
+    const response = await fetch(`${process.env.VERCEL_URL || 'http://localhost:3000'}/api/sheet-data`);
+    const sheetData = await response.json();
 
     return {
       props: {
