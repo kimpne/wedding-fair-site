@@ -5,6 +5,8 @@ import HeaderNotice from '../components/HeaderNotice';
 import InternalLinks from '../components/InternalLinks';
 
 export default function 일산웨딩박람회({ sheetData }) {
+  // Ensure sheetData is always an array
+  const safeSheetData = Array.isArray(sheetData) ? sheetData : [];) {
   return (
     <>
       <Head>
@@ -40,8 +42,7 @@ export default function 일산웨딩박람회({ sheetData }) {
       <main>
         <div className="container">
           <ul>
-            {sheetData
-              .filter((row) => row[0] === '일산')
+            {safeSheetData.filter((row) => row[0] === '일산')
               .map((row, idx) => (
                 <li key={idx} style={{ borderBottom: '1px dashed #ccc', padding: '20px 0' }}>
                   <a href={row[5]} target="_blank" rel="noopener noreferrer" style={{ display: 'flex', gap: '20px' }}>
@@ -65,6 +66,23 @@ export default function 일산웨딩박람회({ sheetData }) {
 
 export async function getServerSideProps() {
   const { getSheetData } = require('../lib/sheet');
+  
+  try {
+    const sheetData = await getSheetData();
+    return {
+      props: {
+        sheetData: Array.isArray(sheetData) ? sheetData : [],
+      },
+    };
+  } catch (error) {
+    console.error('Error fetching sheet data:', error);
+    return {
+      props: {
+        sheetData: [],
+      },
+    };
+  }
+} = require('../lib/sheet');
   
   try {
     const sheetData = await getSheetData();
