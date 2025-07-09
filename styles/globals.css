@@ -1,0 +1,201 @@
+:root {
+  --background: #fdfdfd;
+  --foreground: #333;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Noto Sans KR', Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: #E91E63;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+h1, h2, h3 {
+  margin-top: 0;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: 'Noto Sans KR', Arial, sans-serif;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+ul li {
+  margin-bottom: 15px;
+}
+
+ul li a {
+  display: block;
+  padding: 15px 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fafafa;
+  font-weight: 500;
+  font-size: 16px;
+  color: #333;
+  transition: all 0.2s ease;
+}
+
+ul li a:hover {
+  background: #f0f0f0;
+  border-color: #999;
+  text-decoration: none;
+}
+
+header {
+  padding: 30px 20px;
+  background: #f8f8f8;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+header p {
+  font-size: 14px;
+  color: #666;
+}
+
+/* 탭 메뉴 */
+.tabmenu ul {
+  display: flex;
+  justify-content: center;
+  background-color: #a0154c;
+  padding: 0;
+  margin: 0;
+}
+
+.tabmenu ul li {
+  list-style: none;
+}
+
+.tabmenu ul li a {
+  display: block;
+  padding: 15px 25px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  background-color: transparent;
+  border: none;
+  transition: background 0.3s;
+}
+
+.tabmenu ul li a:hover {
+  background-color: #870f3f;
+}
+
+.tabmenu ul li.active a {
+  background-color: #870f3f;
+  border-radius: 0;
+}
+.header-notice {
+  background-color: #a0154c;
+  color: #fff;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.header-notice h1 {
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.header-notice p {
+  font-size: 1rem;
+  opacity: 0.9;
+  line-height: 1.5;
+}
+
+/* 웨딩 박람회 카드 */
+.fair-item {
+  border: 1px solid #eee;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: 0.3s;
+}
+
+.fair-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.fair-item a {
+  display: flex;
+  gap: 20px;
+  padding: 16px;
+  align-items: center;
+}
+
+.fair-item img {
+  width: 200px !important;
+  height: 150px !important;
+  object-fit: cover !important;
+  border-radius: 6px !important;
+}
+
+.fair-item h3 {
+  margin-bottom: 6px;
+  font-size: 1.1rem;
+}
+
+.fair-item p {
+  margin: 2px 0;
+  font-size: 0.95rem;
+}
+
+/* 반응형 */
+@media (max-width: 600px) {
+  .fair-item a {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .fair-item img {
+    width: 100%;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+}
