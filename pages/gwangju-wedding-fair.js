@@ -1,53 +1,10 @@
 
 import Head from 'next/head';
-import { useState, useEffect } from 'react';
 import HeaderNotice from '../components/HeaderNotice';
 import RegionTabs from '../components/RegionTabs';
 import InternalLinks from '../components/InternalLinks';
 
-export default function 광주웨딩박람회() {
-  const [sheetData, setSheetData] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('/api/sheet-data');
-        const data = await response.json();
-        setSheetData(Array.isArray(data) ? data : []);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-        setSheetData([]);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  if (loading) {
-    return (
-      <>
-        <Head>
-          <title>2025 광주웨딩박람회 일정 총정리 | 최신 박람회 정보</title>
-          <meta name="description" content="2025년 광주웨딩박람회 일정을 한눈에 확인하세요! 최신 박람회 정보와 혜택을 놓치지 마세요." />
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
-        <HeaderNotice />
-        <RegionTabs />
-        <main>
-          <div className="container" style={{ padding: '30px', textAlign: 'center' }}>
-            <h1>2025 광주 웨딩박람회</h1>
-            <p>데이터를 불러오는 중...</p>
-          </div>
-        </main>
-        <InternalLinks />
-      </>
-    );
-  }
-
+export default function 광주웨딩박람회({ sheetData }) {
   return (
     <>
       <Head>
@@ -89,4 +46,40 @@ export default function 광주웨딩박람회() {
       <InternalLinks />
     </>
   );
+}
+
+export async function getStaticProps() {
+  const fs = require('fs');
+  const path = require('path');
+  
+  try {
+    const jsonPath = path.join(process.cwd(), 'public', 'wedding-fair-data.json');
+    
+    if (!fs.existsSync(jsonPath)) {
+      return {
+        props: {
+          sheetData: [],
+        },
+        revalidate: 60,
+      };
+    }
+    
+    const jsonData = fs.readFileSync(jsonPath, 'utf-8');
+    const sheetData = JSON.parse(jsonData);
+
+    return {
+      props: {
+        sheetData: Array.isArray(sheetData) ? sheetData : [],
+      },
+      revalidate: 60,
+    };
+  } catch (error) {
+    console.error('Error in getStaticProps:', error);
+    return {
+      props: {
+        sheetData: [],
+      },
+      revalidate: 60,
+    };
+  }
 }
