@@ -2,6 +2,7 @@ import Head from 'next/head';
 import HeaderNotice from '../components/HeaderNotice';
 import RegionTabs from '../components/RegionTabs';
 import InternalLinks from '../components/InternalLinks';
+import Link from 'next/link';
 
 export default function 서울웨딩박람회({ sheetData }) {
   return (
@@ -46,7 +47,11 @@ export default function 서울웨딩박람회({ sheetData }) {
 
       <main>
         <div className="container" style={{ padding: '30px' }}>
-          <h1 style={{ textAlign: 'center', marginBottom: '30px' }}>2025 서울 웨딩박람회</h1>
+          <h1 style={{ textAlign: 'center', marginBottom: '30px' }}>
+            <Link href="/" style={{ textDecoration: 'none', color: 'inherit', cursor: 'pointer' }}>
+              2025 서울 웨딩박람회
+            </Link>
+          </h1>
 
           {(() => {
             const currentRegionData = sheetData.filter((row) => row[0] === '서울');

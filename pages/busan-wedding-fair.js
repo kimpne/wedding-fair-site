@@ -48,11 +48,11 @@ export default function 부산웨딩박람회({ sheetData }) {
 
       <main>
         <div className="container" style={{ padding: '30px' }}>
-          <Link href="/" passHref>
-            <h1 style={{ textAlign: 'center', marginBottom: '30px', cursor: 'pointer' }}>
+          <h1 style={{ textAlign: 'center', marginBottom: '30px' }}>
+            <Link href="/" style={{ textDecoration: 'none', color: 'inherit', cursor: 'pointer' }}>
               2025 부산 웨딩박람회
-            </h1>
-          </Link>
+            </Link>
+          </h1>
 
           {(() => {
             const currentRegionData = sheetData.filter((row) => row[0] === '부산');

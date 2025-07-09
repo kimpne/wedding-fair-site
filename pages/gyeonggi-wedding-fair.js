@@ -2,6 +2,7 @@ import Head from 'next/head';
 import HeaderNotice from '../components/HeaderNotice';
 import RegionTabs from '../components/RegionTabs';
 import InternalLinks from '../components/InternalLinks';
+import Link from 'next/link';
 
 export default function 경기웨딩박람회({ sheetData }) {
   return (

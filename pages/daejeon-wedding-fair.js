@@ -47,11 +47,11 @@ export default function 대전웨딩박람회({ sheetData }) {
 
       <main>
         <div className="container" style={{ padding: '30px' }}>
-          <Link href="/" passHref> {/* Wrap the h1 with a Link */}
-            <h1 style={{ textAlign: 'center', marginBottom: '30px', cursor: 'pointer' }}> {/* Added cursor style for better UX */}
+          <h1 style={{ textAlign: 'center', marginBottom: '30px' }}>
+            <Link href="/" style={{ textDecoration: 'none', color: 'inherit', cursor: 'pointer' }}>
               2025 대전 웨딩박람회
-            </h1>
-          </Link>
+            </Link>
+          </h1>
 
           {(() => {
             const currentRegionData = sheetData.filter((row) => row[0] === '대전');
