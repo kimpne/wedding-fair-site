@@ -1,7 +1,7 @@
 
-export default async function handler(req, res) {
-  const { google } = require('googleapis');
+const { google } = require('googleapis');
 
+export default async function handler(req, res) {
   try {
     const credentials = JSON.parse(process.env.GOOGLE_CREDENTIALS || '{}');
     
