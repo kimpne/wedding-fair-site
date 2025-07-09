@@ -1,28 +1,22 @@
 
-import { google } from 'googleapis';
+import fs from 'fs';
+import path from 'path';
 
 export default async function handler(req, res) {
   try {
-    const credentials = JSON.parse(process.env.GOOGLE_CREDENTIALS || '{}');
+    // JSON 파일에서 데이터 읽기
+    const jsonPath = path.join(process.cwd(), 'public', 'wedding-fair-data.json');
     
-    const auth = new google.auth.GoogleAuth({
-      credentials: credentials,
-      scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly'],
-    });
-
-    const sheets = google.sheets({ version: 'v4', auth });
-    const spreadsheetId = '1ndcPLgJV-NeW3zWB4NCZzJM3E7EKAK01cdI1pSycnfI';
-    const range = '시트1!A2:F';
-
-    const response = await sheets.spreadsheets.values.get({
-      spreadsheetId,
-      range,
-    });
-
-    const sheetData = response.data.values || [];
+    if (!fs.existsSync(jsonPath)) {
+      return res.status(404).json({ error: 'Wedding fair data not found' });
+    }
+    
+    const jsonData = fs.readFileSync(jsonPath, 'utf-8');
+    const sheetData = JSON.parse(jsonData);
+    
     res.status(200).json(sheetData);
   } catch (error) {
-    console.error('Error fetching sheet data:', error);
+    console.error('Error reading JSON data:', error);
     res.status(500).json({ error: 'Failed to fetch data' });
   }
 }
