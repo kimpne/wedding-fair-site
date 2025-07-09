@@ -49,21 +49,20 @@ export default function Home() {
           <ul style={{ listStyle: "none", padding: 0 }}>
             {regions.map((region) => (
               <li key={region.path} style={{ marginBottom: "15px" }}>
-                <Link href={`/${region.path}`} legacyBehavior>
-                  <a
-                    style={{
-                      fontSize: "18px",
-                      color: "#E91E63",
-                      fontWeight: "500",
-                      textDecoration: "none",
-                      display: "inline-block",
-                      padding: "10px 15px",
-                      border: "1px solid #ccc",
-                      borderRadius: "8px",
-                    }}
-                  >
-                    {region.name}
-                  </a>
+                <Link
+                  href={`/${region.path}`}
+                  style={{
+                    fontSize: "18px",
+                    color: "#E91E63",
+                    fontWeight: "500",
+                    textDecoration: "none",
+                    display: "inline-block",
+                    padding: "10px 15px",
+                    border: "1px solid #ccc",
+                    borderRadius: "8px",
+                  }}
+                >
+                  {region.name}
                 </Link>
               </li>
             ))}
