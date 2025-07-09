@@ -63,11 +63,12 @@ export default function 광주웨딩박람회({ sheetData }) {
 
 export async function getServerSideProps() {
   const { google } = require('googleapis');
-  const path = require('path');
 
   try {
+    const credentials = JSON.parse(process.env.GOOGLE_CREDENTIALS || '{}');
+    
     const auth = new google.auth.GoogleAuth({
-      keyFile: path.join(process.cwd(), 'credentials.json'),
+      credentials: credentials,
       scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly'],
     });
 

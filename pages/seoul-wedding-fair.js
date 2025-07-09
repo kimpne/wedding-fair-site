@@ -62,17 +62,34 @@ export default function 서울웨딩박람회({ sheetData }) {
 }
 
 export async function getServerSideProps() {
-  const { getSheetData } = require('../lib/sheet');
+  const { google } = require('googleapis');
 
   try {
-    const sheetData = await getSheetData();
+    const credentials = JSON.parse(process.env.GOOGLE_CREDENTIALS || '{}');
+    
+    const auth = new google.auth.GoogleAuth({
+      credentials: credentials,
+      scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly'],
+    });
+
+    const sheets = google.sheets({ version: 'v4', auth });
+    const spreadsheetId = '1ndcPLgJV-NeW3zWB4NCZzJM3E7EKAK01cdI1pSycnfI';
+    const range = '시트1!A2:D';
+
+    const response = await sheets.spreadsheets.values.get({
+      spreadsheetId,
+      range,
+    });
+
+    const sheetData = response.data.values || [];
+
     return {
       props: {
         sheetData: Array.isArray(sheetData) ? sheetData : [],
       },
     };
   } catch (error) {
-    console.error('Error fetching sheet data:', error);
+    console.error('Error in getServerSideProps:', error);
     return {
       props: {
         sheetData: [],
