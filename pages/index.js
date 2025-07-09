@@ -57,48 +57,88 @@ export default function Home() {
       <style jsx>{`
         .region-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-          gap: 20px;
-          max-width: 900px;
+          grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+          gap: 16px;
+          max-width: 1000px;
           margin: 0 auto;
+          padding: 0 20px;
         }
 
         .region-card {
           display: flex;
           align-items: center;
           justify-content: center;
-          padding: 20px;
-          background: #fafafa;
-          border: 1px solid #ccc;
-          border-radius: 8px;
+          padding: 24px 16px;
+          background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+          border: 2px solid #e9ecef;
+          border-radius: 12px;
           text-decoration: none;
           color: #E91E63;
-          font-weight: 600;
+          font-weight: 700;
           font-size: 16px;
           text-align: center;
-          min-height: 80px;
-          transition: all 0.3s ease;
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+          min-height: 90px;
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          box-shadow: 0 2px 8px rgba(233, 30, 99, 0.08);
+          position: relative;
+          overflow: hidden;
+        }
+
+        .region-card::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 3px;
+          background: linear-gradient(90deg, #E91E63, #ad1457);
+          transform: translateX(-100%);
+          transition: transform 0.3s ease;
         }
 
         .region-card:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+          transform: translateY(-4px);
+          box-shadow: 0 8px 25px rgba(233, 30, 99, 0.15);
           border-color: #E91E63;
-          background: #f0f0f0;
+          background: linear-gradient(135deg, #fff 0%, #fce4ec 100%);
           text-decoration: none;
+          color: #ad1457;
+        }
+
+        .region-card:hover::before {
+          transform: translateX(0);
+        }
+
+        .region-card:active {
+          transform: translateY(-2px);
+          transition: transform 0.1s ease;
         }
 
         @media (max-width: 768px) {
           .region-grid {
-            grid-template-columns: 1fr;
-            gap: 15px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            padding: 0 16px;
           }
           
           .region-card {
-            min-height: 60px;
+            min-height: 75px;
+            font-size: 14px;
+            padding: 20px 12px;
+            font-weight: 600;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .region-grid {
+            grid-template-columns: 1fr;
+            gap: 12px;
+          }
+          
+          .region-card {
+            min-height: 70px;
             font-size: 15px;
-            padding: 15px;
+            padding: 18px 16px;
           }
         }
       `}</style>
