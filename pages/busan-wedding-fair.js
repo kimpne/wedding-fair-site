@@ -4,8 +4,18 @@ import HeaderNotice from '../components/HeaderNotice';
 import RegionTabs from '../components/RegionTabs';
 import InternalLinks from '../components/InternalLinks';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
-export default function 부산웨딩박람회({ sheetData }) {
+
+export default function busanWeddingFair() {
+  const [sheetData, setSheetData] = useState([]);
+
+useEffect(() => {
+  fetch('/wedding-fair-data.json')
+    .then((res) => res.json())
+    .then((data) => setSheetData(data))
+    .catch((err) => console.error('JSON fetch error:', err));
+}, []);
   return (
     <>
       <Head>
@@ -113,38 +123,4 @@ export default function 부산웨딩박람회({ sheetData }) {
   );
 }
 
-export async function getStaticProps() {
-  const fs = await import('fs');
-  const path = await import('path');
-  
-  try {
-    const jsonPath = path.default.join(process.cwd(), 'public', 'wedding-fair-data.json');
-    
-    if (!fs.default.existsSync(jsonPath)) {
-      return {
-        props: {
-          sheetData: [],
-        },
-        revalidate: 60,
-      };
-    }
-    
-    const jsonData = fs.default.readFileSync(jsonPath, 'utf-8');
-    const sheetData = JSON.parse(jsonData);
 
-    return {
-      props: {
-        sheetData: Array.isArray(sheetData) ? sheetData : [],
-      },
-      revalidate: 60,
-    };
-  } catch (error) {
-    console.error('Error in getStaticProps:', error);
-    return {
-      props: {
-        sheetData: [],
-      },
-      revalidate: 60,
-    };
-  }
-}
