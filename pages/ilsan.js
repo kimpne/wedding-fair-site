@@ -115,10 +115,10 @@ export default function ilsan({ sheetData }) {
 export async function getStaticProps() {
   const fs = await import('fs');
   const path = await import('path');
-  
+
   try {
     const jsonPath = path.default.join(process.cwd(), 'public', 'wedding-fair-data.json');
-    
+
     if (!fs.default.existsSync(jsonPath)) {
       return {
         props: {
@@ -127,13 +127,7 @@ export async function getStaticProps() {
         revalidate: 60,
       };
     }
-    
-export async function getStaticProps() {
-  const fs = await import('fs');
-  const path = await import('path');
 
-  try {
-    const jsonPath = path.default.join(process.cwd(), 'public', 'wedding-fair-data.json');
     const jsonData = fs.default.readFileSync(jsonPath, 'utf-8');
     const sheetData = JSON.parse(jsonData);
 
@@ -141,10 +135,12 @@ export async function getStaticProps() {
       props: {
         sheetData: Array.isArray(sheetData) ? sheetData : [],
       },
+      revalidate: 60,
     };
   } catch (error) {
     console.error('❗ JSON 읽기 실패:', error);
     throw new Error('wedding-fair-data.json 읽기 실패. 파일을 확인하세요.');
   }
 }
+
 
