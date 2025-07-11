@@ -143,7 +143,7 @@ export async function getStaticProps() {
       props: {
         sheetData: [],
       },
-      revalidate: 60,
+     // revalidate: 60,
     };
   }
 }

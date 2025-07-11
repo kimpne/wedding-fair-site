@@ -3,8 +3,17 @@ import HeaderNotice from '../components/HeaderNotice';
 import RegionTabs from '../components/RegionTabs';
 import InternalLinks from '../components/InternalLinks';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
-export default function busan({ sheetData }) {
+export default function Busan() {
+  const [sheetData, setSheetData] = useState([]);
+
+  useEffect(() => {
+    fetch('/wedding-fair-data.json')
+      .then((res) => res.json())
+      .then((data) => setSheetData(data))
+      .catch((err) => console.error('JSON fetch error:', err));
+  }, []);
   return (
     <>
       <Head>
