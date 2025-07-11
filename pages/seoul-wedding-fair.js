@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 
-export default function 서울웨딩박람회() {
+export default function SeoulWeddingFair() {
   const [sheetData, setSheetData] = useState([]);
 
 useEffect(() => {
