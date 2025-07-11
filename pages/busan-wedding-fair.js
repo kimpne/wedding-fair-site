@@ -6,16 +6,15 @@ import InternalLinks from '../components/InternalLinks';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
-
-export default function busanWeddingFair() {
+export default function BusanWeddingFair() {
   const [sheetData, setSheetData] = useState([]);
 
-useEffect(() => {
-  fetch('/wedding-fair-data.json')
-    .then((res) => res.json())
-    .then((data) => setSheetData(data))
-    .catch((err) => console.error('JSON fetch error:', err));
-}, []);
+  useEffect(() => {
+    fetch('/wedding-fair-data.json')
+      .then((res) => res.json())
+      .then((data) => setSheetData(data))
+      .catch((err) => console.error('JSON fetch error:', err));
+  }, []);
   return (
     <>
       <Head>
