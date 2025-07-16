@@ -6,12 +6,12 @@ const regions = [
   { name: '경기', path: 'gyeonggi-wedding-fair' },
   { name: '인천', path: 'incheon-wedding-fair' },
   { name: '부산', path: 'busan-wedding-fair' },
-  { name: '대전', path: 'daejeon-wedding-fair' },
-  { name: '전라도', path: 'jeolla-wedding-fair' },
-  { name: '광주', path: 'gwangju-wedding-fair' },
+  { name: '천안', path: 'chenan' },
+  { name: '청주', path: 'cheongju' },
+  { name: '광주', path: 'gwangju' },
   { name: '울산', path: 'ulsan-wedding-fair' },
-  { name: '일산', path: 'ilsan-wedding-fair' },
-  { name: '수원', path: 'suwon-wedding-fair' },
+  { name: '수원', path: 'suwon' },
+  { name: '제주', path: 'jeju' },
 ];
 
 export default function RegionTabs() {
